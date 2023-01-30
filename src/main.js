@@ -2,8 +2,17 @@ import { createApp } from 'vue'
 import './style.css'
 import App from './App.vue'
 import PrimeVue from 'primevue/config'
-import primeFlex from  '/node_modules/primeflex/primeflex.css'
+import Button from 'primevue/button'
+import '/node_modules/primeflex/primeflex.css'
+import "primevue/resources/themes/saga-blue/theme.css"       //theme
+import "primevue/resources/primevue.min.css"                 //core css
+
 
 const app = createApp(App);
-app.mount("#app");
+
 app.use(PrimeVue);
+
+app.component('Button', Button);
+
+
+app.mount("#app");
