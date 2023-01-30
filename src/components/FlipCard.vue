@@ -3,26 +3,32 @@
     <div class="flip-card" @click="isFlipped = !isFlipped">
       <div class="flip-card-inner" :class ="{flipped: isFlipped}">
         <div class="flip-card-front">
-          <p id="txt">{{ front }}</p>
+          <div v-if="flipcard.isDeletable" class="delete right-aligned" @click="deleteCard()"><i class="pi pi-times"></i></div>
+          <p id="txt">{{ flipcard.front }}</p>
         </div>
         <div class="flip-card-back">
-          <p id="txt">{{ back }}</p>
+          <div  v-if="flipcard.isDeletable" class="delete right-aligned" @click="deleteCard()"><i class="pi pi-times"></i></div>
+          <p id="txt">{{ flipcard.back }}</p>
         </div>
       </div>
     </div>
   </div>
 </template>
 
+
 <script>
 export default {
-  //flipcard is a list with 2 items ["front","back"]
-  props: ["flipcard"],
+  //flipcard is a list with 2 items ["front","back","deletable"]
+  props: ["flipcard","count"],
 
   data() {
     return {
-      front: this.flipcard[0],
-      back: this.flipcard[1],
-      isFlipped: false,
+      isFlipped: false,  
+    }
+  },
+  methods: {
+    deleteCard(){
+      this.$emit("delete-card",this.flipcard);
     }
   }
 };
@@ -30,7 +36,17 @@ export default {
 </script>
 
 
-<style scoped>
+
+<style>
+
+.delete{
+  padding: 10px;
+}
+
+.right-aligned {
+  text-align: right;
+}
+
 #txt {
   padding: 70px 0;
 }
@@ -94,6 +110,9 @@ code below is taken from w3schools src = https://www.w3schools.com/howto/howto_c
   transform: rotateY(180deg);
 }
 
+.flip-card-front {
+
+}
 
 /*code above is from w3sxhools src = https://www.w3schools.com/howto/howto_css_flip_card.asp
 */
