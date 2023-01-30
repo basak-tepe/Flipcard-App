@@ -15,6 +15,7 @@
 
 <script>
 export default {
+  //flipcard is a list with 2 items ["front","back"]
   props: ["flipcard"],
 
   data() {
@@ -36,19 +37,19 @@ export default {
 
 .FlipCard {
   justify-items: center;
-}
-
-.flip-card {
+  padding: 20px;
+  margin: 20px;
 }
 
 /*
-code below is taken from w3schools
+code below is taken from w3schools src = https://www.w3schools.com/howto/howto_css_flip_card.asp
 */
+
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .flip-card {
   background-color: transparent;
-  width: 300px;
-  height: 200px;
+  width: 250px;
+  height: 250px;
   border: 1px solid #f1f1f1;
   perspective: 1000px;
   /* Remove this if you don't want the 3D effect */
@@ -93,6 +94,8 @@ code below is taken from w3schools
   transform: rotateY(180deg);
 }
 
-/*code above is from w3sxhools
+
+/*code above is from w3sxhools src = https://www.w3schools.com/howto/howto_css_flip_card.asp
 */
+
 </style>
