@@ -3,6 +3,7 @@ import App from './App.vue'
 import PrimeVue from 'primevue/config'
 import Button from 'primevue/button'
 import router from './router'
+import { createPinia } from 'pinia'
 
 
 import './style.css'
@@ -13,9 +14,14 @@ import 'primeicons/primeicons.css'                          //icons
 
 
 const app = createApp(App);
+const pinia = createPinia();
+
+app.use(pinia);
+
 
 app.use(PrimeVue);
 app.use(router);
+
 app.component('Button', Button);
 
 app.mount("#app");

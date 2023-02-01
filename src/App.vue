@@ -1,34 +1,30 @@
 <template>
   <div>
     <div class="links">
-      <router-link class="nav-link" active-class="active"  to="/"  :to="{ name: 'Home', params: { flashCards: flashCards } }" >
+      <router-link class="nav-link" active-class="active"  to="/">
         Home Page
       </router-link>
 
-      <router-link class="nav-link" active-class="active" to="/game" :to="{ name: 'Game', params: { flashCards: flashCards } }">
+      <router-link class="nav-link" active-class="active" to="/game">
       Game
     </router-link>
 
     </div>
-    <router-view  @flashCards-updated="updateFlashCards"></router-view>
+    <router-view></router-view>
 
   </div>
 </template>
 
 
 <script>
+import { useStore } from "./stores/store";
+
 export default{
   
   data (){
     return {
       count: 0,
-      flashCards: [],
-    }
-  },
-
-  methods: {
-    updateFlashCards (updatedFlashCards) {
-      this.flashCards = updatedFlashCards;
+      store: useStore(),
     }
   }
 }

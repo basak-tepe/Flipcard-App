@@ -18,7 +18,7 @@
 
 <script>
 export default {
-  //flipcard is a list with 2 items ["front","back","deletable"]
+  //flipcard is an object with 3 data fields {"front","back","deletable"}
   props: ["flipcard","count"],
 
   data() {

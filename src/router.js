@@ -5,11 +5,13 @@ import Game from "./views/Game.vue";
 const routes = [
     {
         path: "/",
-        component: Home
+        component: Home,
+        props: true
     },
     {
         path: "/game",
-        component: Game
+        component: Game,
+        props: true
     }
 ];
 
