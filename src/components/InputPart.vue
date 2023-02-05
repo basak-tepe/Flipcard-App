@@ -31,6 +31,7 @@ export default {
             front: "",
             back: "",
             isDeletable: true,
+            locked: false,
         };
     },
 

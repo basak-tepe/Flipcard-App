@@ -1,13 +1,13 @@
 <template>
   <div class="FlipCard">
     <div class="flip-card" @click="isFlipped = !isFlipped">
-      <div class="flip-card-inner" :class ="{flipped: isFlipped}">
+      <div class="flip-card-inner" :class ="{flipped: isFlipped && !this.locked}">
         <div class="flip-card-front">
-          <div v-if="flipcard.isDeletable" class="delete right-aligned" @click="deleteCard()"><i class="pi pi-times"></i></div>
+          <div v-if="flipcard.isDeletable && !gameView" class="delete right-aligned" @click="deleteCard()"><i class="pi pi-times"></i></div>
           <p id="txt">{{ flipcard.front }}</p>
         </div>
         <div class="flip-card-back">
-          <div  v-if="flipcard.isDeletable" class="delete right-aligned" @click="deleteCard()"><i class="pi pi-times"></i></div>
+          <div  v-if="flipcard.isDeletable && !gameView" class="delete right-aligned" @click="deleteCard()"><i class="pi pi-times"></i></div>
           <p id="txt">{{ flipcard.back }}</p>
         </div>
       </div>
@@ -24,11 +24,28 @@ export default {
   data() {
     return {
       isFlipped: false,  
+      locked: false,
+      gameView: false,
     }
+
   },
   methods: {
     deleteCard(){
       this.$emit("delete-card",this.flipcard);
+    },
+
+    /**
+     * in gameview, we won't see the cross sign.
+     */
+    toggleGameView(){
+      this.gameView = true;
+    },
+    unlock() {
+      this.locked = false;
+    },
+
+    lock(){
+      this.locked = true;
     }
   }
 };

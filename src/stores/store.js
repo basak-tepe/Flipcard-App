@@ -8,8 +8,12 @@ export const useStore = defineStore('store' , {
     actions: {
         addCard(card){
             this.flashCards.push(card);
+        },
+
+        deleteCard(removed){
+            this.flashCards = this.flashCards.filter(function (card) {
+                return card !== removed;
+            });
         }
     }
-
-
 });

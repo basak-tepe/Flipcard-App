@@ -1,13 +1,13 @@
 <template>
     <h2>Make Cards</h2>
-    <InputPart :count="count" :flashCards="flashCards" @update:count="updateCount"
-        @update:flashcards="updateFlashCards"/>
+    <InputPart :count="count" @update:count="updateCount"
+        @update:flashcards= "updateFlashCards"/>
 
 
     <ul id="flipCards" class="grid list-none">
         <li v-for="flipcard in this.store.flashCards" class="col-12 sm:col-12 md:col-6 lg:col-3">
             <div class="border-round-md shadow-6">
-                <FlipCard :flipcard="flipcard" @delete-card="deleteCard" />
+                <FlipCard :flipcard="flipcard" @delete-card="deleteCard" ref="gameCard"/>
             </div>
         </li>
     </ul>
@@ -24,8 +24,6 @@ export default {
     data() {
         return {
             count: 0,
-            //flashcards is a 2D list with card objects inside [{"front","back","is Deletable"},{},...]
-            //flashCards: [],
             store: useStore(),
             
         }
@@ -41,11 +39,9 @@ export default {
             this.store.addCard(cardInfo);
         },
 
-        deleteCard(deleted) {
-            this.store.flashCards = this.store.flashCards.filter(function (card) {
-                return card !== deleted;
-            });
-            this.count = this.store.flashCards.length;
+        deleteCard(cardInfo) {
+            this.store.deleteCard(cardInfo);
+            this.count--;
         }
     },
 
@@ -88,4 +84,5 @@ export default {
     justify-content: center;
     display: flex;
 }
+
 </style>
