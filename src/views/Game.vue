@@ -64,9 +64,9 @@ export default {
             if (this.randomCard.back.toLowerCase() === this.guess.toLowerCase()) {
                 this.$refs.gameCard.unlock();
                 this.correctGuess = true;
+                this.state = "Your guess was correct!"
                 this.filterDeck(this.randomCard);
                 console.log(this.gameDeck);
-                this.state = "Your guess was correct!"
             }
 
             else {
@@ -76,6 +76,7 @@ export default {
 
         pickRandomCard() {
             this.randomCard = this.gameDeck[Math.floor(Math.random() * this.gameDeck.length)];
+            this.$refs.gameCard.lock();
         },
 
         getNewCard() {
@@ -102,6 +103,11 @@ export default {
         //reset game
         startOver() {
             this.gameDeck = [...this.store.flashCards];
+            this.randomCard = {
+                front: "",
+                back: "",
+                isDeletable: false,
+            },
             this.pickRandomCard();
             this.correctGuess = false;
             this.gameOver = false;
